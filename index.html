@@ -4,8 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ohmski Dom</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <h1>Ohmski Dom</h1>
+    <div id="app">
+        <button @click="switchCategory(-1)">&lt;</button>
+        <button @click="switchCategory(1)">&gt;</button>
+
+        <div id="cat-programs" class="category" v-show="category==0">
+            <h1>Programs</h1>
+
+            <div id="programs" v-for="program in programs">
+                <div class="program-tile">
+                    <h3 class="tile-title"><a :href="program.link">{{ program.name }}</a></h3>
+                    <p class="tile-description">{{ program.desc }}</p>
+                    <div class="program-platforms" v-for="platform in program.platforms">
+                        <p class="platform-icon">{{ platform }}</p>
+                    </div>
+                    <div class="tile-tags" v-for="tag in program.tags">
+                        <p class="tile-tag">{{ tag }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cat-images" class="category" v-show="category==1">
+            <h1>Images</h1>
+        </div>
+
+        <div id="cat-misc" class="category" v-show="category==2">
+            <h1>Miscellaneous</h1>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
